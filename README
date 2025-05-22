@@ -1,0 +1,82 @@
+--AUTHOR--
+Vinpatrik Magdangal (vmagdang)
+
+--INSTRUCTIONS--
+To run this program, use the Makefile by running the command 'make dine'.
+Within dine.c, there are also the constants NUM_PHILOSOPHERS and NUM_CYCLES.
+NUM_PHILOSOPHERS is the amount of philosophers that will be created, whilst
+NUM_CYCLES determines how many times a philosopher will eat and think.
+
+After running the makefile, ./dine takes in an optional command-line argument
+as the number of eat/think cycles that each philosopher will run. For example,
+./dine 2 will run the eat/think cycles twice per philosopher. Absent this
+argument, it will default to 1 cycle.
+
+--DESCRIPTION--
+This program is Assignment 3 for CPE453. It is a representation of the dining
+philosophers problem that uses semaphores to ensure that resources will be
+evenly distributed, allowing multiple philosophers to eat without sending
+them all into a deadlock. To prevent them from entering deadlock, odd-numbered
+philosophers will attempt to pick up the forks to the right of them first rather
+than the forks to their left.
+
+The program includes the following functions:
+
+- void PrintHeader()
+Prints out the header of the philosopher table.
+
+Takes no inputs, returns no value. 
+
+- void PrintEnding()
+Prints out the footer of the philosopher table.
+
+Takes no inputs, returns no value. 
+
+- void PrintStatus()
+Prints out the header of the philosopher table.
+
+Takes no inputs, returns no value. 
+
+- void eat(int fork1, int fork2, int philId)
+Instruction for a philosopher to eat. To eat, a philosopher
+will first want to eat, and will attempt to pick up fork1. They
+will then attempt to pick up fork2. During each change, it will
+modify its state in a global array.
+
+fork1 is the fork that a philosopher will pick up first.
+fork2 is the fork that a philosopher will pick up second.
+philId is the philosopher's number that it will use to update its state.
+
+This function does not return anything. 
+
+- void think(int philId)
+Instruction for a philosopher to think. While thinking, a
+philosopher will essentially do nothing and ponder the questions
+that the world throws at them. The thinking philosopher will also
+update their own state to note that they are thinking.
+
+philId is the philosopher's number that it will use to update its state.
+
+This function does not return anything. 
+
+- void *philosopher(void *id)
+The overall instruction that a philosopher follows. Depending on
+NUM_CYCLES, a philosopher will eat and think that many times. Based
+on the philosopher's id, it will set it to pick either its left or
+right fork first in order to prevent deadlock.
+
+id is the id of the philosopher, which will determine if they
+will pick up the left or right fork first.
+
+This function does not return anything.
+
+
+- int main()
+Main program that is called upon dine being run. This creates the
+philosophers and prints out the foundations for the tables. It will
+exit once all philosophers complete all of their cycles.
+
+main() takes in no parameters.
+
+This function returns 0 upon success, but will exit and print
+an error message upon some error.
