@@ -33,7 +33,7 @@ Prints out the footer of the philosopher table.
 Takes no inputs, returns no value. 
 
 - void PrintStatus()
-Prints out the header of the philosopher table.
+Prints out one line of status of the philosopher table.
 
 Takes no inputs, returns no value. 
 
